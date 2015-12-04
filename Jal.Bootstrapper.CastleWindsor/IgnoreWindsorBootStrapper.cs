@@ -30,7 +30,7 @@ namespace Jal.Bootstrapper.CastleWindsor
             var filteredAssemblies = new List<Assembly>();
             foreach (var assembly in assemblies)
             {
-                if (!_ignoredAssemblies.Contains(assembly.GetName().Name))
+                if (_ignoredAssemblies == null || !_ignoredAssemblies.Contains(assembly.GetName().Name))
                 {
                     filteredAssemblies.Add(assembly);
                 }
