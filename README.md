@@ -22,4 +22,5 @@ Just another library to setup a group of classes
 	composite.Configure();
 	
 **Check the results of your Bootstrapper class looking the property Result**
+
 	var result = bootstrapper.Result;
