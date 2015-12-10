@@ -1,6 +1,6 @@
 # Jal.Bootstrapper
 Just another library to setup a group of classes
-
+##How to use?
 **Create your Bootstrapper class**
 
     public class DoSomethingBootstrapper : IBootstrapper<bool>
