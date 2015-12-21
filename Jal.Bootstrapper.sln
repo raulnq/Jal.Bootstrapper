@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D62FCB
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.Serilog.Sinks.Splunk", "Jal.Bootstrapper.Serilog.Sinks.Splunk\Jal.Bootstrapper.Serilog.Sinks.Splunk.csproj", "{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{3BAA13FA-D615-463F-B31E-63F668754466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BAA13FA-D615-463F-B31E-63F668754466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BAA13FA-D615-463F-B31E-63F668754466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
