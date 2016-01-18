@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Jal.Bootstrapper.Serilog.Sinks.Splunk")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Integration between Serilog.Sinks.Splunk and Jal.Bootstrapper library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Raul Naupari")]
 [assembly: AssemblyProduct("Jal.Bootstrapper.Serilog.Sinks.Splunk")]

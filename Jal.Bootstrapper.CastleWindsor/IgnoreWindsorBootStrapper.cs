@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Jal.Bootstrapper.Interface;
@@ -16,7 +17,7 @@ namespace Jal.Bootstrapper.CastleWindsor
 
         private readonly string[] _ignoredAssemblies;
 
-        public IgnoreWindsorBootstrapper(IEnumerable<IWindsorInstaller> specificInstallers, Action<IWindsorContainer> setupAction, string[] ignoredAssemblies)
+        public IgnoreWindsorBootstrapper(IEnumerable<IWindsorInstaller> specificInstallers, Action<IWindsorContainer> setupAction, string[] ignoredAssemblies=null)
         {
             _specificInstallers = specificInstallers;
             _setupAction = setupAction;
@@ -26,8 +27,11 @@ namespace Jal.Bootstrapper.CastleWindsor
         public void Configure()
         {
             var container = new WindsorContainer();
+
             var assemblies = AssemblyFinder.Impl.AssemblyFinder.Current.GetAssemblies();
+
             var filteredAssemblies = new List<Assembly>();
+
             foreach (var assembly in assemblies)
             {
                 if (_ignoredAssemblies == null || !_ignoredAssemblies.Contains(assembly.GetName().Name))
@@ -36,13 +40,29 @@ namespace Jal.Bootstrapper.CastleWindsor
                 }
             }
             var installers = AssemblyFinder.Impl.AssemblyFinder.Current.GetInstancesOf<IWindsorInstaller>(filteredAssemblies.ToArray());
-            var selectedInstallers = installers.ToList();
+            
+            var selectedInstallers = new List<IWindsorInstaller>();
+
+            foreach (var installer in installers)
+            {
+                var type = installer.GetType().Name;
+
+                if (_specificInstallers.All(x => x.GetType().Name != type))
+                {
+                    selectedInstallers.Add(installer);
+                }
+                
+            }
+
             if (_specificInstallers != null)
             {
                 selectedInstallers.AddRange(_specificInstallers);
             }
+            
             _setupAction(container);
+            
             container.Install(selectedInstallers.ToArray());
+            
             Result = container;
         }
 
