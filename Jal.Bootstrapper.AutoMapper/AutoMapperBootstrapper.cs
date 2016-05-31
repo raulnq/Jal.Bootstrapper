@@ -7,10 +7,17 @@ namespace Jal.Bootstrapper.AutoMapper
 {
     public class AutoMapperBootstrapper : IBootstrapper<bool>
     {
+        private readonly Profile[] _profiles;
+
+        public AutoMapperBootstrapper(Profile[] profiles)
+        {
+            _profiles = profiles;
+        }
+
         public void Configure()
         {
-            var assemblies = AssemblyFinder.Impl.AssemblyFinder.Current.GetAssemblies("Map");
-            var profiles = AssemblyFinder.Impl.AssemblyFinder.Current.GetInstancesOf<Profile>(assemblies);
+            var profiles = _profiles;
+
             Mapper.Initialize(a =>
                               {
                                   foreach (var profile in profiles)
