@@ -16,7 +16,7 @@ namespace Jal.Bootstrapper.CastleWindsor
 
         private readonly Assembly[] _installerSourceAssemblies;
 
-        public WindsorBootstrapper(IEnumerable<IWindsorInstaller> installers, Action<IWindsorContainer> setupAction, Assembly[] installerSourceAssemblies)
+        public WindsorBootstrapper(IEnumerable<IWindsorInstaller> installers, Assembly[] installerSourceAssemblies=null, Action<IWindsorContainer> setupAction=null)
         {
             _installers = installers;
             _setupAction = setupAction;
@@ -32,27 +32,19 @@ namespace Jal.Bootstrapper.CastleWindsor
             if (_installerSourceAssemblies != null)
             {
                 var installers = GetInstancesOf<IWindsorInstaller>(_installerSourceAssemblies);
-                foreach (var windsorInstaller in installers)
-                {
-                    var customAttributes = windsorInstaller.GetType().GetCustomAttributes(typeof(InstallerTagAttribute), false);
-                    if (customAttributes.Length > 0)
-                    {
-                        foreach (var customAttribute in customAttributes)
-                        {
-                            var attribute = customAttribute as InstallerTagAttribute;
-                            if (attribute != null)
-                            {
-                                selectedInstallers.Add(windsorInstaller);
-                            }
-                        }
-                    }
-                }
+                selectedInstallers.AddRange(installers);
             }
             if (_installers != null)
             {
                 selectedInstallers.AddRange(_installers);
             }
-            _setupAction(container);
+
+            if (_setupAction!=null)
+            {
+                _setupAction(container);
+            }
+
+            
             container.Install(selectedInstallers.ToArray());
             Result = container;
         }
