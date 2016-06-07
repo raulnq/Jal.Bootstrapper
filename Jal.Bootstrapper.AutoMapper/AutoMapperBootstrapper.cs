@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using AutoMapper;
 using AutoMapper.Data;
 using AutoMapper.Mappers;
 using Jal.Bootstrapper.Interface;
@@ -7,16 +11,16 @@ namespace Jal.Bootstrapper.AutoMapper
 {
     public class AutoMapperBootstrapper : IBootstrapper<bool>
     {
-        private readonly Profile[] _profiles;
+        private readonly Assembly[] _profileSourceAssemblies;
 
-        public AutoMapperBootstrapper(Profile[] profiles)
+        public AutoMapperBootstrapper(Assembly[] profileSourceAssemblies)
         {
-            _profiles = profiles;
+            _profileSourceAssemblies = profileSourceAssemblies;
         }
 
         public void Configure()
         {
-            var profiles = _profiles;
+            var profiles = GetInstancesOf<Profile>(_profileSourceAssemblies);
 
             Mapper.Initialize(a =>
                               {
@@ -30,5 +34,22 @@ namespace Jal.Bootstrapper.AutoMapper
         }
 
         public bool Result { get; private set; }
+
+        public T[] GetInstancesOf<T>(Assembly[] assemblies)
+        {
+            var type = typeof(T);
+            var instances = new List<T>();
+            foreach (var assembly in assemblies)
+            {
+                var assemblyInstance = (
+                    assembly.GetTypes()
+                    .Where(t => type.IsAssignableFrom(t) && t.GetConstructor(Type.EmptyTypes) != null)
+                    .Select(Activator.CreateInstance)
+                    .Cast<T>()
+                    ).ToArray();
+                instances.AddRange(assemblyInstance);
+            }
+            return instances.ToArray();
+        }
     }
 }
