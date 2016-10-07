@@ -10,7 +10,7 @@ namespace Jal.Bootstrapper.Tests
     public class Tests
     {
         [Test]
-        public void Configure_WithCompositeBootstrapper_True()
+        public void Configure_WithCompositeBootstrapper_ShouldBeTrue()
         {
             var bootstrapper = new DoSomethingBootstrapper();
 

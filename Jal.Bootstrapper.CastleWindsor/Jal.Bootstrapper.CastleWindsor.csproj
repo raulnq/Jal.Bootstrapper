@@ -49,6 +49,7 @@
     <Compile Include="WindsorBootStrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Jal.Bootstrapper.CastleWindsor.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

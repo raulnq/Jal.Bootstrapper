@@ -65,6 +65,7 @@
     <Compile Include="SpecificTypeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Jal.Bootstrapper.Serilog.Sinks.Splunk.v2.ncrunchproject" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
