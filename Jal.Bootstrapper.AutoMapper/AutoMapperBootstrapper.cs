@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using AutoMapper.Data;
-using AutoMapper.Mappers;
 using Jal.Bootstrapper.Interface;
 
 namespace Jal.Bootstrapper.AutoMapper
@@ -28,7 +26,6 @@ namespace Jal.Bootstrapper.AutoMapper
                                   {
                                       a.AddProfile(profile);
                                   }
-                                  MapperRegistry.Mappers.Add(new DataReaderMapper { YieldReturnEnabled = true });
                               });
             Result = true;
         }

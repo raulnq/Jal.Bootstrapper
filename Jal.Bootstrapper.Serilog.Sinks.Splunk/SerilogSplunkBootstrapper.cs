@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using Jal.Bootstrapper.Interface;
 using Serilog;
+using Serilog.Sinks.Splunk;
 
 namespace Jal.Bootstrapper.Serilog.Sinks.Splunk
 {
@@ -8,33 +12,27 @@ namespace Jal.Bootstrapper.Serilog.Sinks.Splunk
     {
         private readonly Action<LoggerConfiguration> _loggerSetup;
 
-        private readonly string _context;
+        private readonly SerilogSplunkConfiguration _configuration;
 
-        private readonly int _batchSizeLimit;
-
-        private readonly TimeSpan _batchInterval;
-
-        public SerilogSplunkBootstrapper(string context, int batchSizeLimit, TimeSpan batchInterval, Action<LoggerConfiguration> loggerSetup = null)
+        public SerilogSplunkBootstrapper(SerilogSplunkConfiguration configuration, Action<LoggerConfiguration> loggerSetup = null)
         {
             _loggerSetup = loggerSetup;
 
-            _context = context;
-
-            _batchSizeLimit = batchSizeLimit;
-
-            _batchInterval = batchInterval;
+            _configuration = configuration;
         }
 
         public void Configure()
         {
-            var loggerSettings = new LoggerSettings(_context, _batchSizeLimit, _batchInterval);
+            var loggerConfiguration = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.EventCollector(
+                    _configuration.Url,
+                    _configuration.Token, batchSizeLimit: _configuration.BatchSizeLimit, 
+                    batchIntervalInSeconds: _configuration.BatchIntervalInSeconds,
+                    jsonFormatter: new SplunkJsonFormatter(false, null, _configuration.Source, _configuration.SourceType, GetLocalIpAddress(), _configuration.Index));
 
-            var loggerConfiguration = new LoggerConfiguration().ReadFrom.Settings(loggerSettings);
 
-            if (_loggerSetup!=null)
-            {
-                _loggerSetup(loggerConfiguration);
-            }
+            _loggerSetup?.Invoke(loggerConfiguration);
 
             Log.Logger = loggerConfiguration.CreateLogger();
 
@@ -42,5 +40,13 @@ namespace Jal.Bootstrapper.Serilog.Sinks.Splunk
         }
 
         public LoggerConfiguration Result { get; set; }
+
+        private static string GetLocalIpAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            return host.AddressList
+                .FirstOrDefault(add => add.AddressFamily == AddressFamily.InterNetwork)
+                ?.ToString();
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper", "Jal.Bootstrapper\Jal.Bootstrapper.csproj", "{C3C344B1-10DC-4C6A-B3CE-0D40EB4CCC9E}"
 EndProject
@@ -11,19 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.CastleWind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.Tests", "Jal.Bootstrapper.Tests\Jal.Bootstrapper.Tests.csproj", "{3BAA13FA-D615-463F-B31E-63F668754466}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D62FCBC2-45F3-40BE-8743-9B31408F8BD9}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.Serilog.Sinks.Splunk", "Jal.Bootstrapper.Serilog.Sinks.Splunk\Jal.Bootstrapper.Serilog.Sinks.Splunk.csproj", "{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.LightInject", "Jal.Bootstrapper.LightInject\Jal.Bootstrapper.LightInject.csproj", "{78572824-7041-422B-927B-4952EBE08795}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2239C09C-6D7A-49AE-A051-07582888EB3C}"
 	ProjectSection(SolutionItems) = preProject
-		pack.bat = pack.bat
-		push.bat = push.bat
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -60,5 +53,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C78A8AA-E9D9-435C-9942-2FEB0F8A2093}
 	EndGlobalSection
 EndGlobal
