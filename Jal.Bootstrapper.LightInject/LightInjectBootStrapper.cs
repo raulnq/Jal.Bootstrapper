@@ -11,16 +11,20 @@ namespace Jal.Bootstrapper.LightInject
 
         private readonly Assembly[] _compositionRootSourceAssemblies;
 
-        public LightInjectBootStrapper(Assembly[] compositionRootSourceAssemblies=null, Action<ServiceContainer> setupAction=null)
+        private readonly ContainerOptions _options;
+
+        public LightInjectBootStrapper(Assembly[] compositionRootSourceAssemblies=null, Action<ServiceContainer> setupAction=null, ContainerOptions options=null)
         {
             _setupAction = setupAction;
 
             _compositionRootSourceAssemblies = compositionRootSourceAssemblies;
+
+            _options = options;
         }
 
         public void Configure()
         {
-            var container = new ServiceContainer();
+            var container = (_options == null) ? new ServiceContainer() : new ServiceContainer(_options);
             
             if (_compositionRootSourceAssemblies != null)
             {
