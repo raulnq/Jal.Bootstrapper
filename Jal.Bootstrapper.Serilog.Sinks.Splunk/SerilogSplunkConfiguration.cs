@@ -15,5 +15,7 @@
         public string Source { get; set; }
 
         public string SourceType { get; set; }
+
+        public bool Rendertemplate { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Jal.Bootstrapper.Serilog.Sinks.Splunk
                     _configuration.Url,
                     _configuration.Token, batchSizeLimit: _configuration.BatchSizeLimit, 
                     batchIntervalInSeconds: _configuration.BatchIntervalInSeconds,
-                    jsonFormatter: new SplunkJsonFormatter(false, null, _configuration.Source, _configuration.SourceType, GetLocalIpAddress(), _configuration.Index));
+                    jsonFormatter: new SplunkJsonFormatter(_configuration.Rendertemplate, null, _configuration.Source, _configuration.SourceType, GetLocalIpAddress(), _configuration.Index));
 
 
             _loggerSetup?.Invoke(loggerConfiguration);
