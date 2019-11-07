@@ -1,15 +1,15 @@
 ﻿using Jal.Bootstrapper.Impl;
 using Jal.Bootstrapper.Interface;
 using Jal.Bootstrapper.Tests.Impl;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 
 namespace Jal.Bootstrapper.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class Tests
     {
-        [Test]
+        [TestMethod]
         public void Configure_WithCompositeBootstrapper_ShouldBeTrue()
         {
             var bootstrapper = new DoSomethingBootstrapper();

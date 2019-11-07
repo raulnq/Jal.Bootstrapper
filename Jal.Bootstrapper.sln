@@ -3,22 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper", "Jal.Bootstrapper\Jal.Bootstrapper.csproj", "{C3C344B1-10DC-4C6A-B3CE-0D40EB4CCC9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jal.Bootstrapper", "Jal.Bootstrapper\Jal.Bootstrapper.csproj", "{C3C344B1-10DC-4C6A-B3CE-0D40EB4CCC9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.AutoMapper", "Jal.Bootstrapper.AutoMapper\Jal.Bootstrapper.AutoMapper.csproj", "{C94E9A55-27A7-4737-8314-438E2C60D8CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jal.Bootstrapper.AutoMapper", "Jal.Bootstrapper.AutoMapper\Jal.Bootstrapper.AutoMapper.csproj", "{C94E9A55-27A7-4737-8314-438E2C60D8CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.CastleWindsor", "Jal.Bootstrapper.CastleWindsor\Jal.Bootstrapper.CastleWindsor.csproj", "{D81B002D-E30F-44D4-8EAD-EAD7C0330C99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jal.Bootstrapper.CastleWindsor", "Jal.Bootstrapper.CastleWindsor\Jal.Bootstrapper.CastleWindsor.csproj", "{D81B002D-E30F-44D4-8EAD-EAD7C0330C99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.Tests", "Jal.Bootstrapper.Tests\Jal.Bootstrapper.Tests.csproj", "{3BAA13FA-D615-463F-B31E-63F668754466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jal.Bootstrapper.Serilog.Sinks.Splunk", "Jal.Bootstrapper.Serilog.Sinks.Splunk\Jal.Bootstrapper.Serilog.Sinks.Splunk.csproj", "{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.Serilog.Sinks.Splunk", "Jal.Bootstrapper.Serilog.Sinks.Splunk\Jal.Bootstrapper.Serilog.Sinks.Splunk.csproj", "{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.LightInject", "Jal.Bootstrapper.LightInject\Jal.Bootstrapper.LightInject.csproj", "{78572824-7041-422B-927B-4952EBE08795}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jal.Bootstrapper.LightInject", "Jal.Bootstrapper.LightInject\Jal.Bootstrapper.LightInject.csproj", "{78572824-7041-422B-927B-4952EBE08795}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2239C09C-6D7A-49AE-A051-07582888EB3C}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jal.Bootstrapper.Tests", "Jal.Bootstrapper.Tests\Jal.Bootstrapper.Tests.csproj", "{0A89C935-4D93-453A-AA27-9C60E378B78E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,6 @@ Global
 		{D81B002D-E30F-44D4-8EAD-EAD7C0330C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D81B002D-E30F-44D4-8EAD-EAD7C0330C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D81B002D-E30F-44D4-8EAD-EAD7C0330C99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BAA13FA-D615-463F-B31E-63F668754466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BAA13FA-D615-463F-B31E-63F668754466}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BAA13FA-D615-463F-B31E-63F668754466}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BAA13FA-D615-463F-B31E-63F668754466}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C31B4E8-2A36-426D-8C78-3ED03D7D81D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +46,10 @@ Global
 		{78572824-7041-422B-927B-4952EBE08795}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78572824-7041-422B-927B-4952EBE08795}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78572824-7041-422B-927B-4952EBE08795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A89C935-4D93-453A-AA27-9C60E378B78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A89C935-4D93-453A-AA27-9C60E378B78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A89C935-4D93-453A-AA27-9C60E378B78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A89C935-4D93-453A-AA27-9C60E378B78E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
