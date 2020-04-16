@@ -2,7 +2,7 @@
 
 Just another library to bootstrap your libraries
 
-##How to use?
+## How to use?
 
 Create your Bootstrapper class
 ```csharp
@@ -25,9 +25,9 @@ Check the results of your Bootstrapper class looking the property Result
 ```csharp
 var result = bootstrapper.Result;
 ```	
-##Implementations
+## Implementations
 
-* [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.CastleWindsor.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.CastleWindsor )
-* [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.AutoMapper.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.AutoMapper )
-* [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.LightInject.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.LightInject )
-* [![NuGet](https://img.shields.io/nuget/v/JJal.Bootstrapper.Serilog.Sinks.Splunk.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.Serilog.Sinks.Splunk )
+* CastleWindsor [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.CastleWindsor.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.CastleWindsor )
+* AutoMapper [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.AutoMapper.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.AutoMapper )
+* LightInject [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.LightInject.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.LightInject )
+* Serilog.Sinks.Splunk [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.Serilog.Sinks.Splunk.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.Serilog.Sinks.Splunk )
