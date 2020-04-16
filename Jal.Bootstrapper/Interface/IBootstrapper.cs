@@ -7,6 +7,6 @@
 
     public interface IBootstrapper
     {
-        void Configure();
+        void Run();
     }
 }

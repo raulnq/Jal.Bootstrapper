@@ -4,7 +4,7 @@ namespace Jal.Bootstrapper.Tests.Impl
 {
     public class DoSomethingBootstrapper : IBootstrapper<bool>
     {
-        public void Configure()
+        public void Run()
         {
             Result = true;
         }

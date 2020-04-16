@@ -1,52 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using AutoMapper;
 using Jal.Bootstrapper.Interface;
 
 namespace Jal.Bootstrapper.AutoMapper
 {
-    public class AutoMapperBootstrapper : IBootstrapper<bool>
+    public class AutoMapperBootstrapper : IBootstrapper<MapperConfiguration>
     {
-        private readonly Assembly[] _profileSourceAssemblies;
+        private readonly Action<IMapperConfigurationExpression> _action;
 
-        public AutoMapperBootstrapper(Assembly[] profileSourceAssemblies)
+        public AutoMapperBootstrapper(Action<IMapperConfigurationExpression> action)
         {
-            _profileSourceAssemblies = profileSourceAssemblies;
+            _action = action;
         }
 
-        public void Configure()
+        public void Run()
         {
-            var profiles = GetInstancesOf<Profile>(_profileSourceAssemblies);
-
-            Mapper.Initialize(a =>
-                              {
-                                  foreach (var profile in profiles)
-                                  {
-                                      a.AddProfile(profile);
-                                  }
-                              });
-            Result = true;
+            var config = new MapperConfiguration(_action);
+            Result = config;
         }
 
-        public bool Result { get; private set; }
-
-        public T[] GetInstancesOf<T>(Assembly[] assemblies)
-        {
-            var type = typeof(T);
-            var instances = new List<T>();
-            foreach (var assembly in assemblies)
-            {
-                var assemblyInstance = (
-                    assembly.GetTypes()
-                    .Where(t => type.IsAssignableFrom(t) && t.GetConstructor(Type.EmptyTypes) != null)
-                    .Select(Activator.CreateInstance)
-                    .Cast<T>()
-                    ).ToArray();
-                instances.AddRange(assemblyInstance);
-            }
-            return instances.ToArray();
-        }
+        public MapperConfiguration Result { get; private set; }
     }
 }

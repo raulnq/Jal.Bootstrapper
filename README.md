@@ -1,37 +1,33 @@
 # Jal.Bootstrapper
 
-Just another library to setup a group of classes
+Just another library to bootstrap your libraries
 
 ##How to use?
 
 Create your Bootstrapper class
-
-    public class DoSomethingBootstrapper : IBootstrapper<bool>
+```csharp
+public class DoSomethingBootstrapper : IBootstrapper<bool>
+{
+    public void Run()
     {
-        public void Configure()
-        {
-            Result = true;
-        }
-        public bool Result { get; private set; }
+        Result = true;
     }
-	
+    public bool Result { get; private set; }
+}
+```
 Create an instance of your class and add it to the CompositeBootstrapper class
+```csharp
+var bootstrapper = new DoSomethingBootstrapper();
 
-	var bootstrapper = new DoSomethingBootstrapper();
-
-	var composite = new CompositeBootstrapper(new IBootstrapper[] { bootstrapper });
-	
-Call the Configure method of the CompositeBootstrapper class
-
-	composite.Configure();
-	
+new CompositeBootstrapper().Add(bootstrapper)Run();
+```	
 Check the results of your Bootstrapper class looking the property Result
-
-	var result = bootstrapper.Result;
-
+```csharp
+var result = bootstrapper.Result;
+```	
 ##Implementations
 
-* Jal.Bootstrapper.AutoMapper
-* Jal.Bootstrapper.CastleWindsor
-* Jal.Bootstrapper.LightInject
-* Jal.Bootstrapper.Serilog.Sinks.Splunk
+* [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.CastleWindsor.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.CastleWindsor )
+* [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.AutoMapper.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.AutoMapper )
+* [![NuGet](https://img.shields.io/nuget/v/Jal.Bootstrapper.LightInject.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.LightInject )
+* [![NuGet](https://img.shields.io/nuget/v/JJal.Bootstrapper.Serilog.Sinks.Splunk.svg)](https://www.nuget.org/packages/Jal.Bootstrapper.Serilog.Sinks.Splunk )

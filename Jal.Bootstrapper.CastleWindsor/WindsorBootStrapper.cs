@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Jal.Bootstrapper.Interface;
@@ -12,69 +10,40 @@ namespace Jal.Bootstrapper.CastleWindsor
     {
         private readonly IEnumerable<IWindsorInstaller> _installers;
 
-        private readonly Action<IWindsorContainer> _setupAction;
+        private readonly Action<IWindsorContainer> _action;
 
-        private readonly Assembly[] _installerSourceAssemblies;
-
-        private IWindsorContainer _container;
-
-        public WindsorBootstrapper(IEnumerable<IWindsorInstaller> installers, Assembly[] installerSourceAssemblies=null, Action<IWindsorContainer> setupAction=null)
+        public WindsorBootstrapper(IEnumerable<IWindsorInstaller> installers, Action<IWindsorContainer> action=null)
         {
             _installers = installers;
-            _setupAction = setupAction;
-            _installerSourceAssemblies = installerSourceAssemblies;
+            _action = action;
         }
 
-        public WindsorBootstrapper(IWindsorContainer container, IEnumerable<IWindsorInstaller> installers, Assembly[] installerSourceAssemblies = null, Action<IWindsorContainer> setupAction = null)
+        public WindsorBootstrapper(IWindsorContainer container, IEnumerable<IWindsorInstaller> installers, Action<IWindsorContainer> action = null)
         {
             _installers = installers;
-            _setupAction = setupAction;
-            _installerSourceAssemblies = installerSourceAssemblies;
-            _container = container;
+            _action = action;
+            Result = container;
         }
 
-        public void Configure()
+        public void Run()
         {
-            if (_container == null)
+            if (Result == null)
             {
-                _container = new WindsorContainer();
+                Result = new WindsorContainer();
             }
             
             var selectedInstallers = new List<IWindsorInstaller>();
 
-            if (_installerSourceAssemblies != null)
-            {
-                var installers = GetInstancesOf<IWindsorInstaller>(_installerSourceAssemblies);
-                selectedInstallers.AddRange(installers);
-            }
             if (_installers != null)
             {
                 selectedInstallers.AddRange(_installers);
             }
 
-            _setupAction?.Invoke(_container);
+            _action?.Invoke(Result);
 
-
-            _container.Install(selectedInstallers.ToArray());
+            Result.Install(selectedInstallers.ToArray());
         }
 
-        public IWindsorContainer Result => _container;
-
-        public T[] GetInstancesOf<T>(Assembly[] assemblies)
-        {
-            var type = typeof(T);
-            var instances = new List<T>();
-            foreach (var assembly in assemblies)
-            {
-                var assemblyInstance = (
-                    assembly.GetTypes()
-                    .Where(t => type.IsAssignableFrom(t) && t.GetConstructor(Type.EmptyTypes) != null)
-                    .Select(Activator.CreateInstance)
-                    .Cast<T>()
-                    ).ToArray();
-                instances.AddRange(assemblyInstance);
-            }
-            return instances.ToArray();
-        }
+        public IWindsorContainer Result { get; private set; }
     }
 }

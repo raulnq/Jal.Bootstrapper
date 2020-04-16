@@ -1,5 +1,4 @@
 ﻿using Jal.Bootstrapper.Impl;
-using Jal.Bootstrapper.Interface;
 using Jal.Bootstrapper.Tests.Impl;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
@@ -14,11 +13,7 @@ namespace Jal.Bootstrapper.Tests
         {
             var bootstrapper = new DoSomethingBootstrapper();
 
-            var composite = new CompositeBootstrapper(new IBootstrapper[] { bootstrapper });
-
-            composite.Configure();
-
-            composite.Result.ShouldBe(true);
+            new CompositeBootstrapper().Add(bootstrapper).Run();
 
             bootstrapper.Result.ShouldBe(true);
         }

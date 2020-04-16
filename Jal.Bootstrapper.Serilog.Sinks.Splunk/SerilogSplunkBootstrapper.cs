@@ -10,18 +10,18 @@ namespace Jal.Bootstrapper.Serilog.Sinks.Splunk
 {
     public class SerilogSplunkBootstrapper : IBootstrapper<LoggerConfiguration>
     {
-        private readonly Action<LoggerConfiguration> _loggerSetup;
+        private readonly Action<LoggerConfiguration> _action;
 
         private readonly SerilogSplunkConfiguration _configuration;
 
-        public SerilogSplunkBootstrapper(SerilogSplunkConfiguration configuration, Action<LoggerConfiguration> loggerSetup = null)
+        public SerilogSplunkBootstrapper(SerilogSplunkConfiguration configuration, Action<LoggerConfiguration> action = null)
         {
-            _loggerSetup = loggerSetup;
+            _action = action;
 
             _configuration = configuration;
         }
 
-        public void Configure()
+        public void Run()
         {
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -32,7 +32,7 @@ namespace Jal.Bootstrapper.Serilog.Sinks.Splunk
                     jsonFormatter: new SplunkJsonFormatter(_configuration.Rendertemplate, null, _configuration.Source, _configuration.SourceType, GetLocalIpAddress(), _configuration.Index));
 
 
-            _loggerSetup?.Invoke(loggerConfiguration);
+            _action?.Invoke(loggerConfiguration);
 
             Log.Logger = loggerConfiguration.CreateLogger();
 
