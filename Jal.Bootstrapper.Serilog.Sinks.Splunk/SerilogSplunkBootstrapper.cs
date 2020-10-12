@@ -27,7 +27,7 @@ namespace Jal.Bootstrapper.Serilog.Sinks.Splunk
                 .MinimumLevel.Debug()
                 .WriteTo.EventCollector(
                     _configuration.Url,
-                    _configuration.Token, batchSizeLimit: _configuration.BatchSizeLimit, 
+                    _configuration.Token, batchSizeLimit: _configuration.BatchSizeLimit, queueLimit: _configuration.QueueLimit,
                     batchIntervalInSeconds: _configuration.BatchIntervalInSeconds,
                     jsonFormatter: new SplunkJsonFormatter(_configuration.Rendertemplate, null, _configuration.Source, _configuration.SourceType, GetLocalIpAddress(), _configuration.Index));
 

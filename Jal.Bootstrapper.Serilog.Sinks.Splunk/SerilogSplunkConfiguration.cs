@@ -12,6 +12,8 @@
 
         public int BatchIntervalInSeconds { get; set; }
 
+        public int? QueueLimit { get; set; }
+
         public string Source { get; set; }
 
         public string SourceType { get; set; }
